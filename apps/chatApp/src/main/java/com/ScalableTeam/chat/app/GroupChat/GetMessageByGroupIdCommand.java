@@ -23,22 +23,32 @@ public class GetMessageByGroupIdCommand implements MyCommand {
             String lastMessageId = (String) object.get("lastMessageId");
             System.out.println("GROUP CHAT ID" + groupChatId);
             System.out.println("Last Message ID" + lastMessageId);
-            if (groupChatId.length() == 0 || lastMessageId.length() == 0) {
+            if (groupChatId.length() == 0) {
                 return new ArrayList<>();
             }
             final Firestore database = FirestoreClient.getFirestore();
-            DocumentReference docRef = database.collection("GroupChats")
-                    .document(groupChatId)
-                    .collection("Messages")
-                    .document(lastMessageId);
-            System.out.println("DOC " + docRef);
+            Query query;
+            if (lastMessageId.length() != 0) {
+                DocumentReference docRef = database.collection("GroupChats")
+                        .document(groupChatId)
+                        .collection("Messages")
+                        .document(lastMessageId);
+                System.out.println("DOC " + docRef);
 
-            Query query = database.collection("GroupChats")
-                    .document(groupChatId)
-                    .collection("Messages")
-                    .orderBy("timestamp", Query.Direction.DESCENDING)
-                    .startAfter(docRef.get().get())
-                    .limit(10);
+                query = database.collection("GroupChats")
+                        .document(groupChatId)
+                        .collection("Messages")
+                        .orderBy("timestamp", Query.Direction.DESCENDING)
+                        .startAfter(docRef.get().get())
+                        .limit(10);
+            } else {
+                query = database.collection("GroupChats")
+                        .document(groupChatId)
+                        .collection("Messages")
+                        .orderBy("timestamp", Query.Direction.DESCENDING)
+                        .limit(10);
+            }
+
 
             List<QueryDocumentSnapshot> messages = query.get().get().getDocuments();
             ArrayList<Message> messagesOut = new ArrayList<>();

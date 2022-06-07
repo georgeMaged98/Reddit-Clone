@@ -20,6 +20,7 @@ public class FirestoreConfig {
         try {
             // Use a service account
 //            InputStream serviceAccount = Files.newInputStream(Paths.get(ConfigData.firestoreURL));
+//            GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
             GoogleCredentials credentials = GoogleCredentials.getApplicationDefault();
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(credentials)

@@ -37,7 +37,7 @@ public class AddMessageCommand implements MyCommand {
             Message m = new Message(authorId, content, Timestamp.now());
             final Firestore database = FirestoreClient.getFirestore();
             ApiFuture<DocumentReference> addedDocRef = database.collection("PrivateChats")
-                    .document()
+                    .document(privateChatId)
                     .collection("Messages").add(m);
             System.out.println("Added document with ID: " + addedDocRef.get().getId());
 

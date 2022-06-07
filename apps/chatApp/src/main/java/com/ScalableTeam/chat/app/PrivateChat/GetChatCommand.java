@@ -21,20 +21,28 @@ public class GetChatCommand implements MyCommand {
         try {
             String privateChatId = (String) data.get("chatId");
             String lastMessageId = (String) data.get("lastMessageId");
+//            System.out.println(lastMessageId);
             final Firestore database = FirestoreClient.getFirestore();
-            DocumentReference docRef = database.collection("PrivateChats")
-                    .document(privateChatId)
-                    .collection("Messages")
-                    .document(lastMessageId);
-            System.out.println("DOC " + docRef);
-
-            Query query = database.collection("PrivateChats")
-                    .document(privateChatId)
-                    .collection("Messages")
-                    .orderBy("timestamp", Query.Direction.DESCENDING)
-                    .startAfter(docRef.get().get())
-                    .limit(10);
-
+            Query query;
+            if (lastMessageId.length() != 0) {
+                DocumentReference docRef = database.collection("PrivateChats")
+                        .document(privateChatId)
+                        .collection("Messages")
+                        .document(lastMessageId);
+                System.out.println("DOC " + docRef);
+                query = database.collection("PrivateChats")
+                        .document(privateChatId)
+                        .collection("Messages")
+                        .orderBy("timestamp", Query.Direction.DESCENDING)
+                        .startAfter(docRef.get().get())
+                        .limit(10);
+            } else {
+                query = database.collection("PrivateChats")
+                        .document(privateChatId)
+                        .collection("Messages")
+                        .orderBy("timestamp", Query.Direction.DESCENDING)
+                        .limit(10);
+            }
             List<QueryDocumentSnapshot> messages = query.get().get().getDocuments();
 
             System.out.println(messages.size());
