@@ -1,6 +1,17 @@
 # Reddit-Clone
 
-This is a massively-scalable application reddit clone. It follows the microservices architecture. 
+This is a massively-scalable application reddit clone. It follows the microservices architecture.
+
+* Spring Boot framwork Java) is used for each micrservice.
+* RabbitMQ is used as a message queue for asynchronous communication between microservices.
+* Reddis is used for caching.
+* Each microservice team is free to choose which database to use.
+
+Chat Team (Individual and Group Chat):
+* Database used is Google Firestore NoSQL database because:
+ * It offers real time firestore client which ensures real-time communication.
+ * NoSQL database is preferred for denormalization to offer scalablility and high availability over consistency in SQL databases. 
+
 
 ### Functionalities:
 * Sign up, login and delete account 
