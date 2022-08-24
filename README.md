@@ -27,13 +27,13 @@ This is a massively-scalable application reddit clone. It follows the microservi
 * Users can see most popular reddits
 * Users can see most popular sub-reddits
 * Notiﬁcations on:
-* * *Comments
-* * *Messages
-* * *Being tagged in posts, photos or comments
-* * *Someone joins a group
-* * *Admin of group is change
-* * *Photo or comment are liked
-* * *New followers
+  * Comments
+  * Messages
+  * Being tagged in posts, photos or comments
+  * Someone joins a group
+  * Admin of group is change
+  * Photo or comment are liked
+  * New followers
 * User recommendations based on followers
 * Reddits recommendations
 * Sub-Reddits recommendations
