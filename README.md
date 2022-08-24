@@ -3,12 +3,12 @@
 This is a massively-scalable application reddit clone. It follows the microservices architecture. 
 
 ### Functionalities:
-• Sign up, login and delete account
-• Edit proﬁle
-• Choose a proﬁle photo
-• Follow and unfollow users
-• Block users
-• Report users
+• Sign up, login and delete account 
+• Edit proﬁle 
+• Choose a proﬁle photo 
+• Follow and unfollow users 
+• Block users 
+• Report users 
 • Create thread (reddit)
 • Create sub thread (sub-reddit)
 • Comment on sub-reddit
